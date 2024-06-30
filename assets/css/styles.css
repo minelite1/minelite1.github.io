@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Comfortaa", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: aliceblue;
+}
+
+body {
+    background: rgba(0,0,0,0.9);
+}
+
+html {
+    --card: #303136;
+    --border: rgba(255,255,255,.12);
+    --button: #debe00;
+    --hover-button: #ffda00;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.btn {
+    color: #1d1d1f;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 15px;
+    background-color: var(--button);
+    border: 0;
+    border-radius: 4px;
+    transition: background-color .3s;
+}
+.btn:hover {
+    background-color: var(--hover-button);
+}
+
+dialog {
+    border: 1px solid var(--border);
+    background-color: var(--card);
+    padding: 20px;
+    border-radius: 4px;
+    min-height: 200px;
+    min-width: 250px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+dialog[open]::backdrop {
+    background: rgba(0,0,0,0.5);
+}
+
+.form__items {
+    display: grid;
+    grid-template-rows: auto;
+    grid-gap: 40px;
+}
+.form__item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.form__item label {
+    text-align: center;
+}
+.form__item input,
+.form__item textarea {
+    resize: vertical;
+    padding: 12px;
+    border: 1px solid var(--border);
+    background-color: var(--card);
+    outline: 0;
+    border-radius: 4px;
+}
