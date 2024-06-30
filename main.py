@@ -4,8 +4,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from disnake.ext.commands import InteractionBot
 from disnake.ui import View, button
-from disnake import ButtonStyle, MessageInteraction as Interaction
-from disnake import Embed
+from disnake import ButtonStyle, Embed, MessageInteraction as Interaction
 from pydantic import BaseModel
 from mcrcon import MCRcon
 import os
@@ -17,7 +16,6 @@ bot = InteractionBot()
 
 app.mount("/assets", StaticFiles(directory="assets"), name="static")
 
-discord_token = os.getenv('DISCORD_TOKEN')
 rcon_password = os.getenv('RCON_PASSWORD')
 rcon = MCRcon("23.88.0.231", rcon_password, 22222)
 rcon.connect()
@@ -41,16 +39,15 @@ class Application(BaseModel):
 async def on_button_click(inter: Interaction):
     custom_id, nick = inter.component.custom_id.split("_")
 
-    match custom_id:
-        case "accept":
-            rcon.command(f"whitelist add {nick}")
-            await inter.response.send_message(
-                f"Игрок с ником {nick} успешно добавлен в белый список, теперь ему разрешено играть на сервере.\nПринял заявку: {inter.author}"
-            )
-        case "reject":
-            await inter.response.send_message(
-                f"Заявка игрок с ником {nick} отклонена.\nОтклонил заявку: {inter.author}"
-            )
+    if custom_id == "accept":
+        rcon.command(f"whitelist add {nick}")
+        await inter.response.send_message(
+            f"Игрок с ником {nick} успешно добавлен в белый список, теперь ему разрешено играть на сервере.\nПринял заявку: {inter.author}"
+        )
+    elif custom_id == "reject":
+        await inter.response.send_message(
+            f"Заявка игрок с ником {nick} отклонена.\nОтклонил заявку: {inter.author}"
+        )
 
 
 @app.post("/send")
@@ -64,34 +61,29 @@ async def send(req: Request, application: Application):
     }
 
     for key in application.__fields__.keys():
-        embed.add_field(f"{fieldNames[key]}", f"{application.dict()[key]}")
+        embed.add_field(name=fieldNames[key], value=str(getattr(application, key)))
 
     class Buttons(View):
-        nick = application.nick
-
-        def __init__(self):
+        def __init__(self, nick):
             super().__init__(timeout=0)
+            self.nick = nick
 
-        @button(label="Принять", style=ButtonStyle.green, custom_id=f"accept_{nick}")
-        async def accept_btn(*args):
+        @button(label="Принять", style=ButtonStyle.green, custom_id="accept")
+        async def accept_btn(self, *args):
             pass
 
-        @button(label="Отклонить", style=ButtonStyle.red, custom_id=f"reject_{nick}")
-        async def reject_btn(*args):
+        @button(label="Отклонить", style=ButtonStyle.red, custom_id="reject")
+        async def reject_btn(self, *args):
             pass
 
     channel = bot.get_channel(1252650804008058990)
-    print(channel)
-    await channel.send(
-        embed=embed,
-        view=Buttons(),
-    )
+    await channel.send(embed=embed, view=Buttons(application.nick))
 
     return {}
 
 async def run():
     try:
-        await bot.start(discord_token)
+        await bot.start(os.getenv('DISCORD_TOKEN'))
     except KeyboardInterrupt:
         pass
 
