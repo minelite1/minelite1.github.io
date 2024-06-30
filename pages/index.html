@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/index.css">
+    <title>SevenRP</title>
+</head>
+<body>
+
+<dialog id="request">
+    <form method="dialog">
+        <div class="form__items">
+            <div class="form__item">
+                <label for="nick">Ник</label>
+                <input type="text" name="nick" id="nick" placeholder="Например sscefalix" maxlength="16" minlength="4" required>
+            </div>
+            <div class="form__item">
+                <label for="play_time">Сколько вы играете в Minecraft</label>
+                <input type="text" name="play_time" id="play_time" placeholder="5 лет" maxlength="20" minlength="4" required>
+            </div>
+            <div class="form__item">
+                <label for="contacts">Контакты</label>
+                <input type="text" name="contacts" id="contacts" placeholder="sscefalix#0428" maxlength="50" minlength="4" required>
+            </div>
+            <div class="form__item">
+                <label for="purpose">Цель прибытия</label>
+                <textarea name="purpose" id="purpose" placeholder="Ваш ответ.." maxlength="500" minlength="20" required></textarea>
+            </div>
+            <div class="buttons">
+                <button type="submit" class="btn" id="send">Отправить заявку</button>
+            </div>
+        </div>
+    </form>
+</dialog>
+
+<dialog id="message">
+    <form method="dialog">
+        <div class="message__title"></div>
+        <div class="message__description"></div>
+        <button type="submit">OK</button>
+    </form>
+</dialog>
+
+<section id="welcome">
+    <div class="container">
+        <div class="hero">
+            <h1 class="hero__title">Делай то, чего тебе хочется. Воплощай свои идеи!</h1>
+            <h2 class="hero__subtitle">Ты в поисках сервера, где ты просто сможешь расслабится,
+                внести свой вклад и поучаствовать в жизни других игроков? Попробуй с нами!</h2>
+            <div class="hero__buttons">
+                <button class="btn" onclick="showDialog()">Подать заявку</button>
+            </div>
+        </div>
+        <div class="info">
+            <div class="info__title">Что из себя представляет наш проект?</div>
+            <div class="info__description">Мы позиционируем себя как приватный игровой сервер.
+                Наш акцент ставится на создании места,
+                где ты действительно сможешь приятно провести время,
+                играя с другими игроками, строя свою неповторимую историю.
+                Ты окажется в мире, со своими законами и атмосферой.
+                Каждый играющий здесь может воплотить свои давние мечты,
+                создав в последствии цепь интересных событий,
+                найти много новых хороших знакомств,
+                начать строительство своего поселения..
+                твори всё, на чего хватает твоего стремления и фантазии!
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="other">
+    <div class="container">
+        <div class="donate">
+            <div class="donate__title">Нам очень важна Ваша поддержка!</div>
+            <div class="donate__description">Поддержите наш проект небольшой суммой на ваше усмотрение,
+                мы будем очень благодарны вам так как мы стараемся над нашим проектом
+                и улучшаем его каждый день!</div>
+            <div class="buttons">
+                <div class="btn" onclick="redirect('donation-alerts')">Поддержать денюжкой</div>
+            </div>
+        </div>
+    </div>
+    <div class="support">
+        <div class="support__title">Ещё остались вопросы?</div>
+        <div class="support__description">Чего же ты ждёшь? Заходи на наш дискорд сервер, и задавай свои вопросы, не стесняйся!</div>
+        <div class="buttons">
+            <div class="btn" onclick="redirect('discord')">Дискорд сервер</div>
+        </div>
+    </div>
+</section>
+
+<script src="/assets/js/index.js"></script>
+
+</body>
+</html>
