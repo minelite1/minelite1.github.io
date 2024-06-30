@@ -1,0 +1,134 @@
+/* Welcome */
+/* Welcome block {*/
+
+#welcome {
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.7) 100%), url("../images/welcome.png");
+    background-size: cover;
+    height: 90vh;
+    background-attachment: fixed;
+}
+
+.hero {
+    height: 100%;
+    width: 100%;
+    margin-top: 8rem;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+.hero__title {
+    font-weight: 700;
+    font-size: 22px;
+    max-width: 400px;
+}
+
+.hero__subtitle {
+    max-width: 50%;
+    font-weight: 400;
+}
+
+/* About block */
+
+.info {
+    margin-top: 8rem;
+    height: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info__title {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.info__description {
+    text-align: center;
+    max-width: 800px;
+}
+
+/* Other */
+/* Donate block */
+
+#other {
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.7) 100%), url("../images/other.png");
+    background-size: cover;
+    height: 70vh;
+    background-attachment: fixed;
+}
+
+.donate {
+    height: 100%;
+    width: 100%;
+    margin-top: 8rem;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.donate__title {
+    font-size: 22px;
+    font-weight: bold;
+}
+.donate__description {
+    max-width: 600px;
+}
+
+/* Support block */
+
+.support {
+    width: 100%;
+    margin-top: 8rem;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.support__title {
+    font-size: 22px;
+    font-weight: bold;
+}
+.support__description {
+    max-width: 600px;
+}
+
+
+/* Form */
+
+#request {
+    max-width: 600px;
+    width: 100%;
+}
+
+dialog#message[open] {
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+#message form button {
+    background-color: var(--button);
+    border: 0;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 10px 25px;
+}
+
+#send {
+    padding: 15px 20px;
+    text-align: center;
+}
