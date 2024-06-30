@@ -8,7 +8,7 @@ from disnake import ButtonStyle, MessageInteraction as Interaction
 from disnake import Embed
 from pydantic import BaseModel
 from mcrcon import MCRcon
-
+import os
 
 templates = Jinja2Templates("pages")
 
@@ -17,8 +17,9 @@ bot = InteractionBot()
 
 app.mount("/assets", StaticFiles(directory="assets"), name="static")
 
-
-rcon = MCRcon("23.88.0.231", "gogabit23r823r982f", 22222)
+discord_token = os.getenv('DISCORD_TOKEN')
+rcon_password = os.getenv('RCON_PASSWORD')
+rcon = MCRcon("23.88.0.231", rcon_password, 22222)
 rcon.connect()
 
 @bot.event
@@ -90,7 +91,7 @@ async def send(req: Request, application: Application):
 
 async def run():
     try:
-        await bot.start("MTI1NzAxNDkzNzYyOTM2MDI3Mw.Gw3SsU.VMML26ItmjV9RBVbwy9TrI6NVxM0f1M-dMTvWY")
+        await bot.start(discord_token)
     except KeyboardInterrupt:
         pass
 
