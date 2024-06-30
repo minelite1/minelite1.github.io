@@ -83,7 +83,7 @@ async def send(req: Request, application: Application):
 
 async def run():
     try:
-        await bot.start(os.getenv('DISCORD_TOKEN'))
+        await bot.start(os.getenv('TOKEN'))
     except KeyboardInterrupt:
         pass
 
